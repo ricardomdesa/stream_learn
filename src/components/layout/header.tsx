@@ -14,6 +14,7 @@ import {
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { StudyPlanGenerator } from '@/components/ai/study-plan-generator';
 import { useRouter } from 'next/navigation';
+import { signOut } from 'next-auth/react';
 
 export function Header() {
   const router = useRouter();
@@ -48,7 +49,10 @@ export function Header() {
                 </div>
               </DropdownMenuLabel>
               <DropdownMenuSeparator />
-              <DropdownMenuItem onClick={() => router.push('/login')}>
+              <DropdownMenuItem onClick={() => {
+                signOut();
+                router.push('/login');
+              }}>
                 <LogOut className="mr-2 h-4 w-4" />
                 <span>Log out</span>
               </DropdownMenuItem>
