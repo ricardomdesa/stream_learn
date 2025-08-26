@@ -1,17 +1,25 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
+import { signIn, useSession } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
+import { useEffect } from 'react';
 
 export function LoginForm() {
+
+  const session = useSession();
   const router = useRouter();
+
+  useEffect(() => {
+    if (session.status === 'authenticated') {
+      router.push('/courses');
+    }
+  }, [session.status, router]);
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
-    // In a real app, this would involve a redirect to the Keycloak server.
-    // Here, we'll just simulate a successful login and redirect to the courses page.
-    router.push('/courses');
+    signIn('keycloak', { callbackUrl: '/courses' });
   };
 
   return (
