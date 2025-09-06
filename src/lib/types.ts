@@ -16,7 +16,7 @@ export interface Course {
   title: string;
   description: string;
   imageUrl: string;
-  modules: Module[];
+  modulos: Module[];
 }
 
 export interface Progress {
