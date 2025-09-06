@@ -16,7 +16,7 @@ interface CourseSidebarProps {
 
 export function CourseSidebar({ course, activeLesson, onSelectLesson }: CourseSidebarProps) {
   const { toggleLessonComplete, isLessonComplete } = useCourseProgress(course.id);
-  const defaultOpenModule = course.modules.find(m => m.lessons.some(l => l.id === activeLesson?.id))?.id;
+  const defaultOpenModule = course.modulos.find(m => m.lessons.some(l => l.id === activeLesson?.id))?.id;
 
   return (
     <aside className="w-full lg:w-80 xl:w-96 border-r flex flex-col bg-card">
@@ -25,8 +25,8 @@ export function CourseSidebar({ course, activeLesson, onSelectLesson }: CourseSi
         <p className="text-sm text-muted-foreground mt-1">{course.description}</p>
       </div>
       <ScrollArea className="flex-1">
-        <Accordion type="single" collapsible defaultValue={defaultOpenModule || course.modules[0]?.id} className="w-full">
-          {course.modules.map((module: Module) => (
+        <Accordion type="single" collapsible defaultValue={defaultOpenModule || course.modulos[0]?.id} className="w-full">
+          {course.modulos.map((module: Module) => (
             <AccordionItem value={module.id} key={module.id}>
               <AccordionTrigger className="px-4 font-semibold text-base hover:no-underline hover:bg-muted/50">
                 {module.title}

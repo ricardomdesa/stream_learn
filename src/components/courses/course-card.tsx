@@ -15,7 +15,7 @@ export function CourseCard({ course }: CourseCardProps) {
       <CardHeader className="p-0">
         <div className="relative h-48 w-full">
            <Image
-            src={course.imageUrl}
+            src={"https://placehold.co/600x400.png"}
             alt={course.title}
             fill
             className="object-cover"

@@ -6,6 +6,7 @@ import { LayoutProvider } from '@/providers/LayoutProvider';
 import { getServerSession } from "next-auth/next";
 import authOptions from '@/utils/nextAuthOptions';
 import PrivateRoute from '@/providers/PrivateRoute';
+import { CoursesProvider } from '@/providers/CoursesProvider';
 
 export const metadata: Metadata = {
   title: 'StreamLearn',
@@ -28,7 +29,9 @@ export default async function RootLayout({
       <body className="font-body antialiased">
         <LayoutProvider session={session}>
           <PrivateRoute>
-            {children}
+            <CoursesProvider>
+              {children}
+            </CoursesProvider>
           </PrivateRoute>
         </LayoutProvider>
         <Toaster />
