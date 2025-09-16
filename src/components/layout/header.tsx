@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { BookOpen, LogOut, Sparkles, User } from 'lucide-react';
+import { BookOpen, LogOut, User } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import {
   DropdownMenu,
@@ -14,7 +14,6 @@ import {
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { StudyPlanGenerator } from '@/components/ai/study-plan-generator';
 import { useRouter } from 'next/navigation';
-import { signOut } from 'next-auth/react';
 
 export function Header() {
   const router = useRouter();
@@ -50,8 +49,7 @@ export function Header() {
               </DropdownMenuLabel>
               <DropdownMenuSeparator />
               <DropdownMenuItem onClick={() => {
-                signOut();
-                router.push('/login');
+                router.push('/api/auth/logout');
               }}>
                 <LogOut className="mr-2 h-4 w-4" />
                 <span>Log out</span>

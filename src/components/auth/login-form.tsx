@@ -2,20 +2,9 @@
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { signIn, useSession } from 'next-auth/react';
-import { useRouter } from 'next/navigation';
-import { useEffect } from 'react';
+import { signIn } from 'next-auth/react';
 
 export function LoginForm() {
-
-  const session = useSession();
-  const router = useRouter();
-
-  useEffect(() => {
-    if (session.status === 'authenticated') {
-      router.push('/courses');
-    }
-  }, [session.status, router]);
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
